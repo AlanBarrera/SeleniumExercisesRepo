@@ -1,4 +1,6 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Exercises 
@@ -14,6 +16,7 @@ public class Exercises
 		{
 			// Run the exercises.
 			ExercisesOneAndTwo();
+			ExerciseThree();
 		}
 		catch(Exception ex)
 		{
@@ -54,6 +57,30 @@ public class Exercises
 		
 		// Print Page Length on Eclipse Console.
 		System.out.println("Page Source Length: " + sourceLength);
+		
+		// Close the browser.
+		driver.quit();
+	}
+	
+	public static void ExerciseThree()
+	{
+		// Launch a new Firefox browser.
+		driver = new FirefoxDriver();
+		
+		// Open Store.DemoQA.com.
+		String url = "http://toolsqa.com/automation-practice-form";
+		driver.get(url);
+		
+		// Type Name & Last Name (with Name locator).
+		WebElement firstName = driver.findElement(By.name("firstname"));
+		WebElement lastName = driver.findElement(By.name("lastname"));
+		
+		firstName.sendKeys("Alan");
+		lastName.sendKeys("Barrera");
+		
+		// Click on Submit button (with ID locator).
+		WebElement submitButton = driver.findElement(By.id("submit"));
+		submitButton.submit();
 		
 		// Close the browser.
 		driver.quit();
