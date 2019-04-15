@@ -1,3 +1,5 @@
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,6 +20,7 @@ public class Exercises
 			ExercisesOneAndTwo();
 			ExerciseThree();
 			ExerciseFour();
+			ExerciseFive();
 		}
 		catch(Exception ex)
 		{
@@ -125,6 +128,57 @@ public class Exercises
 		
 		// Delay to see what is happening.
 		Thread.sleep(3000);
+		
+		// Close the browser.
+		driver.quit();
+	}
+	
+	public static void ExerciseFive() throws InterruptedException
+	{
+		// Launch a new Firefox browser.
+		driver = new FirefoxDriver();
+		
+		// Open http://toolsqa.com/automation-practice-form/.
+		String url = "http://toolsqa.com/automation-practice-form/";
+		driver.get(url);
+		
+		// Delay to see what is happening.
+		Thread.sleep(3000);
+		
+		// Select the deselected Radio button (female) for category Sex (with IsSelected method).
+		List<WebElement> sexRadioButtons = driver.findElements(By.name("sex"));
+		
+		
+		if(sexRadioButtons.get(0).isSelected())
+			sexRadioButtons.get(1).click();
+		else
+			sexRadioButtons.get(0).click();
+		
+		// Select the Third radio button for category 'Years of Exp'
+		// (with Id attribute for Radio button selection).
+		WebElement expRadioButton = driver.findElement(By.id("exp-2"));
+		expRadioButton.click();
+		
+		// Check the Check Box 'Automation Tester' for category 'Profession'
+		// (with Value attribute for Radio button selection).
+		List<WebElement> professionCheckBoxes = driver.findElements(By.name("profession"));
+		
+		for(WebElement professionCheckBox : professionCheckBoxes)
+		{
+			if(professionCheckBox.getAttribute("value").equalsIgnoreCase("Automation Tester"))
+			{
+				professionCheckBox.click();
+				break;
+			}
+		}
+		
+		// Check the Check Box 'Selenium IDE' for category 'Automation Tool'
+		// (with cssSelector).
+		WebElement seleniumIDECheckBox = driver.findElement(By.cssSelector("input[value='Selenium IDE']"));
+		seleniumIDECheckBox.click();
+		
+		// Delay to see what is happening.
+		Thread.sleep(5000);
 		
 		// Close the browser.
 		driver.quit();
