@@ -30,7 +30,7 @@ public class Exercises
 		}
 	}
 	
-	public static void ExercisesOneAndTwo()
+	public static void ExercisesOneAndTwo() throws InterruptedException
 	{
 		// Launch a new Firefox browser.
 		driver = new FirefoxDriver();
@@ -58,11 +58,14 @@ public class Exercises
 		// Print Page Length on Eclipse Console.
 		System.out.println("Page Source Length: " + sourceLength);
 		
+		// Delay to see what is happening.
+		Thread.sleep(3000);
+		
 		// Close the browser.
 		driver.quit();
 	}
 	
-	public static void ExerciseThree()
+	public static void ExerciseThree() throws InterruptedException
 	{
 		// Launch a new Firefox browser.
 		driver = new FirefoxDriver();
@@ -78,9 +81,15 @@ public class Exercises
 		firstName.sendKeys("Alan");
 		lastName.sendKeys("Barrera");
 		
+		// Delay to see what is happening.
+		Thread.sleep(3000);
+		
 		// Click on Submit button (with ID locator).
 		WebElement submitButton = driver.findElement(By.id("submit"));
 		submitButton.submit();
+		
+		// Delay to see what is happening.
+		Thread.sleep(3000);
 		
 		// Close the browser.
 		driver.quit();
