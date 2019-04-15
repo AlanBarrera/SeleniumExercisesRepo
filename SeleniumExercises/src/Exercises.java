@@ -17,6 +17,7 @@ public class Exercises
 			// Run the exercises.
 			ExercisesOneAndTwo();
 			ExerciseThree();
+			ExerciseFour();
 		}
 		catch(Exception ex)
 		{
@@ -70,8 +71,8 @@ public class Exercises
 		// Launch a new Firefox browser.
 		driver = new FirefoxDriver();
 		
-		// Open Store.DemoQA.com.
-		String url = "http://toolsqa.com/automation-practice-form";
+		// Open http://toolsqa.com/automation-practice-form/.
+		String url = "http://toolsqa.com/automation-practice-form/";
 		driver.get(url);
 		
 		// Type Name & Last Name (with Name locator).
@@ -87,6 +88,40 @@ public class Exercises
 		// Click on Submit button (with ID locator).
 		WebElement submitButton = driver.findElement(By.id("submit"));
 		submitButton.submit();
+		
+		// Delay to see what is happening.
+		Thread.sleep(3000);
+		
+		// Close the browser.
+		driver.quit();
+	}
+	
+	public static void ExerciseFour() throws InterruptedException
+	{
+		// Launch a new Firefox browser.
+		driver = new FirefoxDriver();
+		
+		// Open http://toolsqa.com/automation-practice-form/.
+		String url = "http://toolsqa.com/automation-practice-form/";
+		driver.get(url);
+		
+		// Delay to see what is happening.
+		Thread.sleep(3000);
+				
+		// Click on the Link "Partial Link Test" (with 'partialLinkTest' locator, by "Partial" word).
+		WebElement partialLink = driver.findElement(By.partialLinkText("Partial"));
+		partialLink.click();
+		
+		// Identify Submit button with 'tagName', convert it to String and print it on the console.
+		WebElement submitButton = driver.findElement(By.tagName("button"));
+		System.out.println("Submit button string: " + submitButton.toString());
+		
+		// Delay to see what is happening.
+		Thread.sleep(3000);
+		
+		// Click on the Link "Link Test" (Use 'linkTest' locator).
+		WebElement link = driver.findElement(By.linkText("Link Test"));
+		link.click();
 		
 		// Delay to see what is happening.
 		Thread.sleep(3000);
