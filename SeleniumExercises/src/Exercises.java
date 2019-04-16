@@ -24,8 +24,7 @@ public class Exercises
 			ExerciseFive();
 			ExerciseSix();
 			ExerciseSeven();
-			// Exercise 8 and 9 not available due to page errors.
-			
+			ExerciseEight();
 		}
 		catch(Exception ex)
 		{
@@ -277,6 +276,36 @@ public class Exercises
 		for(int i = 0; i < numberOfOptions; i++)
 			seleniumCommands.deselectByIndex(i);
 		
+		// Delay to see what is happening.
+		Thread.sleep(3000);
+		
+		// Close the browser.
+		driver.quit();
+	}
+	
+	public static void ExerciseEight() throws InterruptedException
+	{
+		// Launch a new Firefox browser.
+		driver = new FirefoxDriver();
+		
+		// Open https://www.seleniumeasy.com/test/table-sort-search-demo.html.
+		String url = "https://www.seleniumeasy.com/test/table-sort-search-demo.html";
+		driver.get(url);
+	
+		
+		// Get the value of cell 'C. Hurst' and print it on the console.
+		List<WebElement> rows = driver.findElements(By.xpath("//*[@id=\"example\"]/tbody/tr/td[1]"));
+		
+		for(int row = 1; row <= rows.size(); row++)
+		{
+			WebElement name = driver.findElement(By.xpath("//*[@id=\"example\"]/tbody/tr["+row+"]/td[1]"));
+			if(name.getText().equals("C. Hurst"))
+			{
+				System.out.println(name.getText() + " found in row number " + row);
+				break;
+			}
+		}
+	
 		// Delay to see what is happening.
 		Thread.sleep(3000);
 		
