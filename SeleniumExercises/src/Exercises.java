@@ -24,6 +24,7 @@ public class Exercises
 			ExerciseFive();
 			ExerciseSix();
 			ExerciseSeven();
+			ExerciseEight();
 		}
 		catch(Exception ex)
 		{
@@ -274,6 +275,28 @@ public class Exercises
 		// Deselect all options.
 		for(int i = 0; i < numberOfOptions; i++)
 			seleniumCommands.deselectByIndex(i);
+		
+		// Delay to see what is happening.
+		Thread.sleep(3000);
+		
+		// Close the browser.
+		driver.quit();
+	}
+	
+	public static void ExerciseEight() throws InterruptedException
+	{
+		// Launch a new Firefox browser.
+		driver = new FirefoxDriver();
+		
+		// Open http://demo.guru99.com/test/web-table-element.php.
+		String url = "http://demo.guru99.com/test/web-table-element.php";
+		driver.get(url);
+		
+		// Get the value of cell 'NCC' and print it on the console.
+		WebElement companyCell = driver.findElement(By.xpath("//*[@id=\"leftcontainer\"]/table/tbody/tr[11]/td[1]/a"));
+		
+		// Click on the link of that cell.
+		companyCell.click();
 		
 		// Delay to see what is happening.
 		Thread.sleep(3000);
