@@ -23,6 +23,7 @@ public class Exercises
 			ExerciseFour();
 			ExerciseFive();
 			ExerciseSix();
+			ExerciseSeven();
 		}
 		catch(Exception ex)
 		{
@@ -223,5 +224,61 @@ public class Exercises
 		
 		// Close the browser.
 		driver.quit();
-	}	
+	}
+	
+	public static void ExerciseSeven() throws InterruptedException
+	{
+		// Launch a new Firefox browser.
+		driver = new FirefoxDriver();
+		
+		// Open http://toolsqa.com/automation-practice-form/.
+		String url = "http://toolsqa.com/automation-practice-form/";
+		driver.get(url);
+		
+		// Select 'Selenium Commands' Multiple selection box
+		// (with Name locator for element identifying).
+		Select seleniumCommands = new Select(driver.findElement(By.name("selenium_commands")));
+		
+		// Select option 'Browser Commands' and then deselect it
+		// (with selectByIndex and deselectByIndex).
+		seleniumCommands.selectByIndex(0);
+		
+		// Delay to see what is happening.
+		Thread.sleep(1000);
+		
+		seleniumCommands.deselectByIndex(0);
+		
+		// Delay to see what is happening.
+		Thread.sleep(1000);
+		
+		// Select option 'Navigation Commands' and then deselect it
+		// (with selectByVisibleText and deselectByVisibleText).
+		seleniumCommands.selectByVisibleText("Navigation Commands");
+		
+		// Delay to see what is happening.
+		Thread.sleep(1000);
+		
+		seleniumCommands.deselectByVisibleText("Navigation Commands");
+		
+		// Print and select all the options for the selected Multiple selection list.
+		List<WebElement> seleniumCommandsOptions = seleniumCommands.getOptions();
+		
+		int numberOfOptions = seleniumCommandsOptions.size();
+		
+		for(int i = 0; i < numberOfOptions; i++)
+		{
+			System.out.println(seleniumCommandsOptions.get(i).getText());
+			seleniumCommands.selectByIndex(i);
+		}
+				
+		// Deselect all options.
+		for(int i = 0; i < numberOfOptions; i++)
+			seleniumCommands.deselectByIndex(i);
+		
+		// Delay to see what is happening.
+		Thread.sleep(3000);
+		
+		// Close the browser.
+		driver.quit();
+	}
 }
