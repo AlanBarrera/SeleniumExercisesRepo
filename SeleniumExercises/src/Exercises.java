@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class Exercises 
 {
@@ -21,6 +22,7 @@ public class Exercises
 			ExerciseThree();
 			ExerciseFour();
 			ExerciseFive();
+			ExerciseSix();
 		}
 		catch(Exception ex)
 		{
@@ -183,4 +185,43 @@ public class Exercises
 		// Close the browser.
 		driver.quit();
 	}
+	
+	public static void ExerciseSix() throws InterruptedException
+	{
+		// Launch a new Firefox browser.
+		driver = new FirefoxDriver();
+		
+		// Open http://toolsqa.com/automation-practice-form/.
+		String url = "http://toolsqa.com/automation-practice-form/";
+		driver.get(url);
+		
+		// Select 'Continents' Drop down (with Id for element identifying)
+		Select continentsDropdown = new Select(driver.findElement(By.id("continents")));
+		
+		// Select option 'Europe' (with selectByIndex).
+		continentsDropdown.selectByIndex(1);
+		
+		// Delay to see what is happening.
+		Thread.sleep(1500);
+		
+		// Select option 'Africa' (with selectByVisibleText).
+		continentsDropdown.selectByVisibleText("Africa");
+		
+		// Print all the options for the selected drop down and select one option of your choice.
+		List<WebElement> continentsOptions = continentsDropdown.getOptions();
+		
+		for(WebElement continentsOption : continentsOptions)
+			System.out.println(continentsOption.getText());
+		
+		// Delay to see what is happening.
+		Thread.sleep(1500);
+		
+		continentsDropdown.selectByVisibleText("Antartica");
+		
+		// Delay to see what is happening.
+		Thread.sleep(3000);
+		
+		// Close the browser.
+		driver.quit();
+	}	
 }
