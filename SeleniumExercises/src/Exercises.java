@@ -1,6 +1,7 @@
 import java.util.List;
 import java.util.Set;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,6 +29,7 @@ public class Exercises
 			ExerciseEight();
 			ExerciseNine();
 			ExerciseTen();
+			ExerciseEleven();
 		}
 		catch(Exception ex)
 		{
@@ -397,6 +399,38 @@ public class Exercises
 				driver.close();
 			}
 		}
+		
+		// Delay to see what is happening.
+		Thread.sleep(3000);
+		
+		// Close the browser.
+		driver.quit();
+	}
+	
+	public static void ExerciseEleven() throws InterruptedException
+	{
+		// Launch a new Firefox browser.
+		driver = new FirefoxDriver();
+		
+		// Open http://toolsqa.com/automation-practice-switch-windows/.
+		String url = "http://toolsqa.com/automation-practice-switch-windows/";
+		driver.get(url);
+		
+		// Again, necessary for the page to load the __cfRLUnblockHandlers variable.
+		Thread.sleep(1000);
+		
+		// Click on Button "Alert Box".
+		WebElement alertButton = driver.findElement(By.id("alert"));
+		alertButton.click();
+		
+		// Delay to see what is happening.
+		Thread.sleep(3000);
+		
+		// Switch to Alert Window (with 'SwitchTo().Alert() command).
+		Alert alert = driver.switchTo().alert();
+		
+		// Close the Pop Up Window (with Accept command)
+		alert.accept();
 		
 		// Delay to see what is happening.
 		Thread.sleep(3000);
