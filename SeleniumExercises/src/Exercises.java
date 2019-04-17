@@ -39,7 +39,8 @@ public class Exercises
 		finally
 		{
 			// Make sure to quit the driver.
-			driver.quit();
+			if(driver != null)
+				driver.quit();
 		}
 	}
 	
