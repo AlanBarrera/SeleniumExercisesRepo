@@ -25,6 +25,7 @@ public class Exercises
 			ExerciseSix();
 			ExerciseSeven();
 			ExerciseEight();
+			ExerciseNine();
 		}
 		catch(Exception ex)
 		{
@@ -302,6 +303,42 @@ public class Exercises
 			if(name.getText().equals("C. Hurst"))
 			{
 				System.out.println(name.getText() + " found in row number " + row);
+				break;
+			}
+		}
+	
+		// Delay to see what is happening.
+		Thread.sleep(3000);
+		
+		// Close the browser.
+		driver.quit();
+	}
+	
+	public static void ExerciseNine() throws InterruptedException
+	{
+		// Launch a new Firefox browser.
+		driver = new FirefoxDriver();
+		
+		// Open https://www.seleniumeasy.com/test/table-sort-search-demo.html.
+		String url = "https://www.seleniumeasy.com/test/table-sort-search-demo.html";
+		driver.get(url);
+	
+		// Print all the column values of row 'C. Marshall'.
+		int numberOfRows = driver.findElements(By.xpath("//*[@id=\"example\"]/tbody/tr/td[1]")).size();
+		List<WebElement> columnHeaders = driver.findElements(By.xpath("//*[@id=\"example\"]/thead/tr/th"));
+
+		for(int row = 1; row <= numberOfRows; row++)
+		{
+			WebElement name = driver.findElement(By.xpath("//*[@id=\"example\"]/tbody/tr["+row+"]/td[1]"));
+			
+			if(name.getText().equals("C. Marshall"))
+			{
+				for(int column = 1; column <= columnHeaders.size(); column++)
+				{
+					WebElement cell = driver.findElement(By.xpath("//*[@id=\"example\"]/tbody/tr["+row+"]/td["+column+"]"));
+					System.out.println(columnHeaders.get(column - 1).getText() + ": " + cell.getText());
+				}
+				
 				break;
 			}
 		}
