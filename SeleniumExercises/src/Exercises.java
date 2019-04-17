@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -26,6 +27,7 @@ public class Exercises
 			ExerciseSeven();
 			ExerciseEight();
 			ExerciseNine();
+			ExerciseTen();
 		}
 		catch(Exception ex)
 		{
@@ -343,6 +345,59 @@ public class Exercises
 			}
 		}
 	
+		// Delay to see what is happening.
+		Thread.sleep(3000);
+		
+		// Close the browser.
+		driver.quit();
+	}
+	
+	public static void ExerciseTen() throws InterruptedException
+	{
+		// Launch a new Firefox browser.
+		driver = new FirefoxDriver();
+		
+		// Open http://toolsqa.com/automation-practice-switch-windows/.
+		String url = "http://toolsqa.com/automation-practice-switch-windows/";
+		driver.get(url);
+		
+		// Get Window name(with GetWindowHandle command).
+		String mainWindow = driver.getWindowHandle();
+		System.out.println("The current Window name is: " + mainWindow);
+		
+		// There is an issue with the '__cfRLUnblockHandlers' variable for the 'New Message Window' button.
+		// so we have to give time for it to load, else onClikc JS function will do nothing.
+		Thread.sleep(1000);
+		
+		// Click on Button "New Message Window".
+		WebElement button = driver.findElement(By.xpath("//*[@id=\"content\"]/p[3]/button"));
+		
+		button.click();
+		
+		// Get all the Windows names (with GetWindowHandles command).
+		System.out.print("\nAll Windows names: ");
+		
+		Set<String> windows = driver.getWindowHandles();
+		
+		for(String window : windows)
+			System.out.print(window + " ");
+		
+		System.out.println();
+		
+		// Delay to see what is happening.
+		Thread.sleep(3000);
+		
+		// Close the Pop Up Window (with Switch Command to shift window).
+		for(String window : windows)
+		{
+			// Since we know there are only 2 windows, close the one that is not the main window.
+			if(!window.equals(mainWindow))
+			{
+				driver.switchTo().window(window);
+				driver.close();
+			}
+		}
+		
 		// Delay to see what is happening.
 		Thread.sleep(3000);
 		
